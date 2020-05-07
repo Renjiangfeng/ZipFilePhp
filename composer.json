@@ -1,5 +1,6 @@
 {
     "name": "renjiangfeng/zip-file-php",
+    "license": "MIT",
     "authors": [
         {
             "name": "Eric",
