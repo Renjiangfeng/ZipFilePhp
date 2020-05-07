@@ -45,5 +45,5 @@ return [
 `php artisan zip:ignore demo` 会打包为`demo.zip`在根目录，默认`appignore.zip`
 
 ### 2.罗列法
-`php artisan zip:zip:forConfig ` 会根据 `need_config` 的罗列列表对文件进行打包,压缩包的名称同上，默认`app.zip`
+`php artisan zip:forConfig ` 会根据 `need_config` 的罗列列表对文件进行打包,压缩包的名称同上，默认`app.zip`
 
