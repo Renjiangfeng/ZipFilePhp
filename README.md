@@ -4,7 +4,7 @@
 
 # 安装
 
-`composer require renjiangfeng/zip-file-php`
+`composer require renjiangfeng/ZipFilePhp`
 
 
 # 开始使用

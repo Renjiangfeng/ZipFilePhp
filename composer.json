@@ -1,5 +1,5 @@
 {
-    "name": "renjiangfeng/zip-file-php",
+    "name": "renjiangfeng/ZipFilePhp",
     "license": "MIT",
     "authors": [
         {
@@ -8,8 +8,7 @@
         }
     ],
     "require": {
-        "php": "^7.0",
-        "symfony/yaml": "^5.0"
+        "php": "^7.0"
     },
     "autoload": {
         "psr-4": {
