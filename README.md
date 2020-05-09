@@ -9,6 +9,9 @@
 
 # 开始使用
 
+##### 添加Provider
+*  `config/app.php` 配置中的 `providers[]` 数组中添加：` Eric\ZipFilePhp\ZipFilePhpServiceProvider::class,`
+
 ##### 执行命令
 
 *  php artisan vendor:publish --force --provider="Eric\ZipFilePhp\ZipFilePhpServiceProvider" 
