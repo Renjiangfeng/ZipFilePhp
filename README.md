@@ -47,3 +47,12 @@ return [
 ### 2.罗列法
 `php artisan zip:forConfig ` 会根据 `need_config` 的罗列列表对文件进行打包,压缩包的名称同上，默认`app.zip`
 
+###备注 
+请确保PHP开启ZipArchive类，能实现压缩解压功能
+####Windows环境：
+>Windows环境：
+> * 首先需要从官网上下载，下载地址 https://windows.php.net/downloads/pecl/releases/zip/
+> * 打开官网列表后需要查找适合自己的PHP版本和系统的zip，我的PHP版本是7.1的，这里我选择的版本号是1.13.5
+> * 下载完后解压，把里面的php_zip.dll文件放到PHP的扩展文件夹里  `Linux`可使用`php -i | grep extension_dir`找到扩展目录 `Windows`一般在PHP安装目录下的`ext`子目录中
+> * 把`php_zip.dll`文件放进去后，打开PHP的配置文件`php.ini`，添加`extension=php_zip.dll`或者取消`extension=php_zip.dll`前的
+>`:`，保存后，重启apache/nginx服务器
