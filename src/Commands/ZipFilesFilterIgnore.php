@@ -49,13 +49,13 @@ class ZipFilesFilterIgnore extends Command
         //需要忽略的文件
         $ignoreArr = $this->parse_ignore_file(config('zip-file-php.ignore_config'));
         //最终需要压缩的文件
-        $datalist        = $this->list_dir(base_path("\\"), $ignoreArr);
+        $datalist        = $this->list_dir(base_path("/"), $ignoreArr);
         $base_path_count = count(str_split(base_path())) + 1;
         $file_arr        = [];//根目录的文件
         $file_path_arr   = [];//更深的文件
         foreach ($datalist as &$item) {
             $item = substr($item, $base_path_count);
-            if (strstr($item, '\\')) {
+            if (strstr($item, '/')) {
                 $file_path_arr[] = $item;
             } else {
                 $file_arr[] = $item;
@@ -70,16 +70,16 @@ class ZipFilesFilterIgnore extends Command
         }
         $base_path = base_path();
         foreach ($file_arr as $v) {
-            if (file_exists($base_path . "\\" . $v)) {
-                $zip->addFile($base_path . "\\" . $v, basename($base_path . "\\" . $v));
+            if (file_exists($base_path . "/" . $v)) {
+                $zip->addFile($base_path . "/" . $v, basename($base_path . "/" . $v));
             }
         }
         foreach ($file_path_arr as $k => $v) {
-            $first_path = explode('\\', $v);
+            $first_path = explode('/', $v);
             array_pop($first_path);
-            $new_path = join("\\", $first_path);
+            $new_path = join("/", $first_path);
             $zip->addEmptyDir($new_path);
-            $zip->addFile($base_path . "\\" . $v, $v);
+            $zip->addFile($base_path . "/" . $v, $v);
         }
         $zip->close();
     }
@@ -110,8 +110,8 @@ class ZipFilesFilterIgnore extends Command
             }
         }
         foreach ($result as &$v) {
-            $v = str_replace('/', "\\", $v);
-            $v = str_replace("\\\\", "\\", $v);
+            $v = str_replace('\\', "/", $v);
+//            $v = str_replace("\\\\", "\\", $v);
         }
         return $result;
     }
@@ -123,8 +123,8 @@ class ZipFilesFilterIgnore extends Command
      * */
     function filter_ignore_file($file, $ignoreArr)
     {
-        $file = str_replace('/', "\\", $file);
-        $file = str_replace("\\\\", "\\", $file);
+        $file = str_replace('\\', "/", $file);
+//        $file = str_replace("\\\\", "\\", $file);
         foreach ($ignoreArr as $v) {
             if (Str::startsWith($file, $v)) {
                 return false;
@@ -176,7 +176,7 @@ class ZipFilesFilterIgnore extends Command
 
         }
         foreach ($matches as &$v) {
-            $v = str_replace('/', "\\", $v);
+            $v = str_replace('\\', "/", $v);
         }
 
         return $matches;

@@ -53,7 +53,7 @@ class ZipFilesForConfig extends Command
                 array_push($file_list, $v);
                 continue;
             }
-            $file_list = array_merge($file_list, $this->list_dir($v . "\\"));
+            $file_list = array_merge($file_list, $this->list_dir($v . "/"));
         }
         $exportPath = $zip_name;
         $zip        = new ZipArchive();
@@ -73,11 +73,11 @@ class ZipFilesForConfig extends Command
         $base_path_count = count(str_split($base_path)) + 1;
         foreach ($file_list as $k => $v) {
             $v          = substr($v, $base_path_count);
-            $first_path = explode('\\', $v);
+            $first_path = explode('/', $v);
             array_pop($first_path);
-            $new_path = join("\\", $first_path);
+            $new_path = join("/", $first_path);
             $zip->addEmptyDir($new_path);
-            $zip->addFile($base_path . "\\" . $v, $v);
+            $zip->addFile($base_path . "/" . $v, $v);
         }
         $zip->close();
     }
@@ -104,8 +104,8 @@ class ZipFilesForConfig extends Command
             }
         }
         foreach ($result as &$v) {
-            $v = str_replace('/', "\\", $v);
-            $v = str_replace("\\\\", "\\", $v);
+            $v = str_replace('\\', "/", $v);
+//            $v = str_replace("\\\\", "\\", $v);
         }
         return $result;
     }
@@ -148,7 +148,7 @@ class ZipFilesForConfig extends Command
                     $files = glob("$dir$line");
 
                 } else {
-                    $root_files[] = $dir . "\\" . $line;
+                    $root_files[] = $dir . "/" . $line;
                     $files        = [];
                 }
 
@@ -157,7 +157,7 @@ class ZipFilesForConfig extends Command
 
         }
         foreach ($matches as &$v) {
-            $v = str_replace('/', "\\", $v);
+            $v = str_replace('\\', "/", $v);
         }
         return [$matches, $root_files];
 
